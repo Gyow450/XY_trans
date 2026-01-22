@@ -3,10 +3,8 @@ from tkinter import filedialog,messagebox,Tk
 from coord_convert.transform import gcj2wgs
 from pathlib import Path
 
-def do_trans()->Path|None:
-    file_path =filedialog.askopenfilename(title="选择xlsx文件",filetypes=[('Excel文件','*.xlsx')])
-    if file_path=='':
-        sys.exit(0)
+def do_trans(file_path:str)->Path|None:
+    
     input_path = Path(file_path)
     output_path = input_path.with_name(input_path.stem+'_转换'+input_path.suffix)
     # 读 Excel
@@ -28,7 +26,11 @@ def do_trans()->Path|None:
     return output_path
 
 if __name__=='__main__':
-    do_trans()
+    file_paths =filedialog.askopenfilenames(title="选择xlsx文件",filetypes=[('Excel文件','*.xlsx')])
+    if not file_paths:
+        sys.exit(0)
+    for file in file_paths:
+        do_trans(file)
     root = Tk()
     root.withdraw()          # 不显示空白主窗口
 
