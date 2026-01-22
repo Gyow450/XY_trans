@@ -35,6 +35,6 @@ if __name__=='__main__':
     root.withdraw()          # 不显示空白主窗口
 
     # 弹出“确定”提示
-    messagebox.showinfo("提示", "操作已完成！")   # 只有确定按钮
+    messagebox.showinfo("提示", f"完成{len(file_paths)}个文档的操作")   # 只有确定按钮
 
     root.destroy()           # 收掉隐藏的主窗口
